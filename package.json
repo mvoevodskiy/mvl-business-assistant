@@ -1,0 +1,19 @@
+{
+  "name": "botcms-business-assistant",
+  "description": "",
+  "main": "lib/assistant.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "mvoevodskiy",
+  "license": "ISC",
+  "dependencies": {
+    "botcms": "git+https://github.com/mvoevodskiy/BotCMS.git",
+    "mvtools": "git+https://github.com/mvoevodskiy/mvtools.git",
+    "mvl-botcms-handler": "git+https://github.com/mvoevodskiy/mvl-botcms-handler"
+  },
+  "devDependencies": {
+    "mvloader": "git+https://github.com/mvoevodskiy/mvloader.git"
+  }
+}
