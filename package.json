@@ -11,9 +11,10 @@
   "dependencies": {
     "botcms": "git+https://github.com/mvoevodskiy/BotCMS.git",
     "mvtools": "git+https://github.com/mvoevodskiy/mvtools.git",
-    "mvl-botcms-handler": "git+https://github.com/mvoevodskiy/mvl-botcms-handler"
+    "mvl-db-bot-controller": "git+https://github.com/mvoevodskiy/mvl-db-bot-controller.git"
   },
   "devDependencies": {
-    "mvloader": "git+https://github.com/mvoevodskiy/mvloader.git"
+    "mvloader": "git+https://github.com/mvoevodskiy/mvloader.git",
+    "sequelize": "^5.21.3"
   }
 }
