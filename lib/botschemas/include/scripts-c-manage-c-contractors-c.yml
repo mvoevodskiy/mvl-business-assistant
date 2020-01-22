@@ -1,0 +1,175 @@
+# c.manage.c.contractors.c
+find:
+  trigger:
+    type: text
+    value: common.btn.action.find
+  message: mvlbaContractors.msg.find
+  validate:
+    validator: mvlbaContractors.find_vld
+    validator-params:
+    success:
+      goto: c.manage.c.contractors.c.find.c.list
+    failure:
+      goto: c.manage.c.contractors.c.find
+      help: c.manage.c.contractors.c.find.c.help_nothing
+  store: query
+  store_thread: manage_contractors
+  c:
+    list:
+      action:
+        type: method
+        value: mvlbaContractors.list_act
+      validate:
+        validator: mvlbaContractors.single_select_vld
+        validator-params:
+        success:
+          goto: c.manage.c.contractors.c.find.c.manage
+        failure:
+          goto: c.manage.c.contractors.c.find
+          help: c.manage.c.contractors.c.find.c.help_nothing
+      store: selected
+      store_thread: manage_contractors
+    manage:
+      action:
+        type: method
+        value: mvlbaContractors.singleManageActions_act
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.contractors.c.find.c.manage.c
+      c:
+        edit:
+          trigger:
+            type: text
+            value: common.btn.action.edit
+          message: mvlbaContractors.msg.edit_single
+          goto: c.manage.c.contractors.c.find.c.manage
+
+        default:
+          goto: c.manage.c.contractors.c.find.c.manage
+
+    help_nothing:
+      message: common.msg.nothing_found
+      goto: c.manage.c.contractors
+
+add:
+  trigger:
+    type: text
+    value: common.btn.action.add
+  message: mvlbaContractors.msg.add.start
+  goto: c.manage.c.contractors.c.add.c.name
+  c:
+    name:
+      message: mvlbaContractors.msg.add.name
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.contractors.c.add.c.alias
+      #            failure:
+      #              goto: c.manage.c.contractors.c.find
+      #              help: c.manage.c.contractors.c.find.c.help_nothing
+      store: name
+      store_thread: manage_contractors_add
+      store_clean: true
+    alias:
+      message: mvlbaContractors.msg.add.alias
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.contractors.c.add.c.fullname
+      #            failure:
+      #              goto: c.manage.c.contractors.c.find
+      #              help: c.manage.c.contractors.c.find.c.help_nothing
+      store: alias
+      store_thread: manage_contractors_add
+    fullname:
+      message: mvlbaContractors.msg.add.fullname
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.contractors.c.add.c.req_inn
+      #            failure:
+      #              goto: c.manage.c.contractors.c.find
+      #              help: c.manage.c.contractors.c.find.c.help_nothing
+      store: fullname
+      store_thread: manage_contractors_add
+    req_inn:
+      message: mvlbaContractors.msg.add.req_inn
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.contractors.c.add.c.req_kpp
+      #            failure:
+      #              goto: c.manage.c.contractors.c.find
+      #              help: c.manage.c.contractors.c.find.c.help_nothing
+      store: req_inn
+      store_thread: manage_contractors_add
+    req_kpp:
+      message: mvlbaContractors.msg.add.req_kpp
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.contractors.c.add.c.req_bik
+      #            failure:
+      #              goto: c.manage.c.contractors.c.find
+      #              help: c.manage.c.contractors.c.find.c.help_nothing
+      store: req_kpp
+      store_thread: manage_contractors_add
+    req_bik:
+      message: mvlbaContractors.msg.add.req_bik
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.contractors.c.add.c.phone
+      #            failure:
+      #              goto: c.manage.c.contractors.c.find
+      #              help: c.manage.c.contractors.c.find.c.help_nothing
+      store: req_bik
+      store_thread: manage_contractors_add
+    phone:
+      message: mvlbaContractors.msg.add.phone
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.contractors.c.add.c.address
+      #            failure:
+      #              goto: c.manage.c.contractors.c.find
+      #              help: c.manage.c.contractors.c.find.c.help_nothing
+      store: phone
+      store_thread: manage_contractors_add
+    address:
+      message: mvlbaContractors.msg.add.address
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.contractors.c.add.c.final
+      #            failure:
+      #              goto: c.manage.c.contractors.c.find
+      #              help: c.manage.c.contractors.c.find.c.help_nothing
+      store: address
+      store_thread: manage_contractors_add
+    final:
+      action:
+        type: method
+        value: mvlbaContractors.add_act
+
+download:
+  trigger:
+    type: text
+    value: common.btn.download_sheet
+  action:
+    type: method
+    value: mvlbaContractors.download
+
+help_unknown_action:
+  message: common.msg.unknown_action
+  goto: c.manage.c.contractors

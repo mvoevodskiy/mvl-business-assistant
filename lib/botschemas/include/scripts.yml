@@ -1,0 +1,80 @@
+c:
+  start:
+    trigger:
+      type: text
+      value:
+        - /start
+        - Начать
+        - /1
+    message:
+      Приветственное сообщение, описание возможностей
+    keyboard_name: main_director
+    command: true
+
+  main:
+    trigger:
+      type: text
+      value: common.btn.menu.main
+    message:
+      Главное меню, список кнопок
+    keyboard_name: main_director
+    command: true
+
+  contractors:
+    trigger:
+      type: text
+      value:
+        - /contractors
+    action:
+      type: method
+      value: mvlbaContractor.getAll
+    keyboard_name: main-director
+    command: true
+
+  btns:
+    trigger:
+      type: text
+      value:
+        - /btns
+    action:
+      type: method
+      value: mvlbaContractor.btns
+    command: true
+
+  write_till:
+    trigger:
+      type: text
+      value: < Записать в кассу >
+    message: Выберите объект
+    command: true
+    keyboard:
+      buttons:
+        - Бизнес Центр отделка
+        - Монтаж видеонаблюдения
+        - Квартира Черная речка
+        - Отделка загородного дома
+        - Компания
+      options:
+        - extra
+        - simple
+        - resize
+    validate:
+      validator:
+      validator-params:
+      success:
+        goto: c.write_till.c.cost_type
+    c: $FILE ./scripts-c-write_till-c.yml
+
+  manage:
+    trigger:
+      type: text
+      value: common.btn.menu.manage
+    message: Изменение параметров, редактирование справочников.
+    keyboard_name: manage
+    validate:
+      validator:
+      validator-params:
+      success:
+        goto: c.manage.c
+    command: true
+    c: $FILE ./scripts-c-manage-c.yml

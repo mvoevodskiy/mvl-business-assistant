@@ -1,0 +1,33 @@
+manage:
+  buttons:
+    - - mvlba.btn.contractors
+      - mvlba.btn.bank_accounts
+    - - mvlba.btn.workers
+      - <  >
+    - - common.btn.menu.main
+  options:
+    - extra
+    - simple
+    - resize
+
+manage_objects:
+  buttons:
+    - - common.btn.action.find
+    - - common.btn.action.add
+    - - mvlba.btn.download_sheet
+#    - <  >
+    - - common.btn.menu.manage
+      - common.btn.menu.main
+
+manage_object:
+  buttons:
+    - - common.btn.action.edit
+    - - common.btn.action.enable_disable
+#    - <  >
+    - - common.btn.menu.manage
+      - common.btn.menu.main
+  options:
+    - extra
+    - simple
+    - resize
+

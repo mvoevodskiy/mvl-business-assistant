@@ -1,0 +1,6 @@
+scripts: $FILE ./include/scripts.yml
+lexicons: $FILE ./include/lexicons.yml
+keyboards: $FILE ./include/keyboards.yml
+#cron: $FILE ./include/cron.yml
+#config: $FILE ./include/config.yml
+#middlewares: $FILE ./include/middlewares.yml

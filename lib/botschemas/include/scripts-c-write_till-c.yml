@@ -1,0 +1,149 @@
+# c.write_till.c
+cost_type:
+  message: Выберите вид траты
+  keyboard:
+    buttons:
+      - Офис
+      - Объект
+    options:
+      - extra
+      - simple
+      - resize
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.write_till.c.partner_type
+partner_type:
+  message: Выберите тип контрагента
+  keyboard:
+    buttons:
+      - Клиент
+      - Подрядчик
+      - Прочие
+    options:
+      - extra
+      - simple
+      - resize
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.write_till.c.partner_name
+partner_name:
+  message: Выберите подрядчика
+  keyboard:
+    buttons:
+      - СТД Петрович
+      - ООО Рент
+      - ООО Компания Вентфорум
+      - ООО Форум
+      - ООО АВК ТЕХНОЛОГИЯ
+    options:
+      - extra
+      - simple
+      - resize
+      - onetime
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.write_till.c.description
+description:
+  message: Напишите пояснение
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.write_till.c.cost_section
+cost_section:
+  message: Выберите статью расходов
+  keyboard:
+    buttons:
+      - Авто
+      - Аренда
+      - Банк
+      - Бензин
+      - Бухгалтерия
+      - Выручка
+      - Декретные
+      - Заём
+    options:
+      - extra
+      - simple
+      - resize
+      - onetime
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.write_till.c.cash_type
+cash_type:
+  message: Выберите тип денег
+  keyboard:
+    buttons:
+      - Б/Н
+      - Б/Н без движения
+      - Б/Н без НДС
+      - Нал
+      - Нал без НДС
+    options:
+      - extra
+      - simple
+      - resize
+      - onetime
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.write_till.c.bank_out
+bank_out:
+  message: Выберите банк (счет), откуда отправлены деньги
+  keyboard:
+    buttons:
+      - - < Контрагент >
+        - Альфа
+      - - Модуль
+        - Модуль карта
+      - - Сбер
+        - Сбер карта
+    options:
+      - extra
+      - simple
+      - resize
+      - onetime
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.write_till.c.bank_in
+bank_in:
+  message: Выберите банк (счет), куда пришли деньги
+  keyboard:
+    buttons:
+      - - < Контрагент >
+        - Альфа
+      - - Модуль
+        - Модуль карта
+      - - Сбер
+        - Сбер карта
+    options:
+      - extra
+      - simple
+      - resize
+      - onetime
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.write_till.c.cost
+cost:
+  message: Укажите сумму
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.write_till.c.final
+final:
+  message: Спасибо за информацию, записано!
+  keyboard_name: to-main

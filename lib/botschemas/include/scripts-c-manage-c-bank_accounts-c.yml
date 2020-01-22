@@ -1,0 +1,115 @@
+# c.manage.c.bank_accounts.c
+find:
+  trigger:
+    type: text
+    value: common.btn.action.find
+  message: mvlbaBankAccounts.msg.find
+  validate:
+    validator: mvlbaBankAccounts.find_vld
+    validator-params:
+    success:
+      goto: c.manage.c.bank_accounts.c.find.c.list
+    failure:
+      goto: c.manage.c.bank_accounts.c.find
+      help: c.manage.c.bank_accounts.c.find.c.help_nothing
+  store: query
+  store_thread: manage_bank_accounts
+  c:
+    list:
+      action:
+        type: method
+        value: mvlbaBankAccounts.list_act
+      validate:
+        validator: mvlbaBankAccounts.single_select_vld
+        validator-params:
+        success:
+          goto: c.manage.c.bank_accounts.c.find.c.manage
+        failure:
+          goto: c.manage.c.bank_accounts.c.find
+          help: c.manage.c.bank_accounts.c.find.c.help_nothing
+      store: selected
+      store_thread: manage_bank_accounts
+    manage:
+      action:
+        type: method
+        value: mvlbaBankAccounts.singleManageActions_act
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.bank_accounts.c.find.c.manage.c
+      c:
+        edit:
+          trigger:
+            type: text
+            value: common.btn.action.edit
+          message: mvlbaBankAccounts.msg.edit_single
+          goto: c.manage.c.bank_accounts.c.find.c.manage
+
+        default:
+          goto: c.manage.c.bank_accounts.c.find.c.manage
+
+    help_nothing:
+      message: common.msg.nothing_found
+      goto: c.manage.c.bank_accounts
+
+add:
+  trigger:
+    type: text
+    value: common.btn.action.add
+  message: mvlbaBankAccounts.msg.add.start
+  goto: c.manage.c.bank_accounts.c.add.c.name
+  c:
+    name:
+      message: mvlbaBankAccounts.msg.add.name
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.bank_accounts.c.add.c.bank
+      #            failure:
+      #              goto: c.manage.c.bank_accounts.c.find
+      #              help: c.manage.c.bank_accounts.c.find.c.help_nothing
+      store: name
+      store_thread: manage_bank_accounts_add
+      store_clean: true
+    bank_name:
+      message: mvlbaBankAccounts.msg.add.bank_name
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.bank_accounts.c.add.c.bik
+      #            failure:
+      #              goto: c.manage.c.bank_accounts.c.find
+      #              help: c.manage.c.bank_accounts.c.find.c.help_nothing
+      store: bank_name
+      store_thread: manage_bank_accounts_add
+    bik:
+      message: mvlbaBankAccounts.msg.add.bik
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.bank_accounts.c.add.c.final
+      #            failure:
+      #              goto: c.manage.c.bank_accounts.c.find
+      #              help: c.manage.c.bank_accounts.c.find.c.help_nothing
+      store: bik
+      store_thread: manage_bank_accounts_add
+    final:
+      action:
+        type: method
+        value: mvlbaBankAccounts.add_act
+
+download:
+  trigger:
+    type: text
+    value: common.btn.mvlba.download_sheet
+  action:
+    type: method
+    value: mvlbaBankAccounts.download
+
+help_unknown_action:
+  message: common.msg.unknown_action
+  goto: c.manage.c.bank_accounts

@@ -1,0 +1,64 @@
+ru:
+  mvlba:
+    btn:
+      contractors: < Контрагенты >
+      bank_accounts: < Счета в банках >
+      workers: < Сотрудники >
+      download_sheet: < Скачать выгрузку >
+
+  common:
+    msg:
+      choose_from_list: Выберите из списка
+      unknown_action: Неизвестное действие
+      nothing_found: Ничего не найдено
+    btn:
+      menu:
+        main: < Главное меню >
+        back: < Назад >
+        manage: < Управление >
+      action:
+        add: < Добавить >
+        remove: < Удалить >
+        find: < Найти >
+        search: < Поиск >
+        enable_disable: < Включить / Отключить >
+        edit: < Редактировать >
+
+
+  mvlbaBankAccounts:
+    msg:
+      root: |
+        Банковские счета.
+        Выберите действие
+      find: Введите часть краткого названия или псевдонима
+      details: |
+        Название: ((name))
+        Банк: ((bank_name))
+        БИК: ((bik))
+        Состояние: ((remain))
+      edit_single: Редактирование в режиме диалога будет доступно позже. Сейчас возможно отредактировать через выгрузку в Excel
+
+  mvlbaContractors:
+    msg:
+      root: |
+        КОНТРАГЕНТЫ.
+        Выберите действие
+      find: Введите часть краткого названия или псевдонима
+      details: |
+        Название: ((name))
+        Псевдоним: ((alias))
+        Полное наименование: ((fullname))
+        ИНН: ((req_inn))
+        КПП: ((req_kpp))
+        БИК: ((req_bik))
+        Адрес: ((address))
+        Телефон: ((phone))
+        Активен: ((active))
+      edit_single: Редактирование в режиме диалога будет доступно позже. Сейчас возможно отредактировать через выгрузку в Excel
+en:
+  btn:
+    menu:
+      main: < Главное меню EN >
+      back: < Назад EN >
+    action:
+      remove: < Удалить EN >

@@ -1,0 +1,26 @@
+# c.manage.c
+contractors:
+  trigger:
+    type: text
+    value: mvlba.btn.contractors
+  message: mvlbaContractors.msg.root
+  keyboard_name: manage_objects
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.manage.c.contractors.c
+  c: $FILE ./scripts-c-manage-c-contractors-c.yml
+
+bank_accounts:
+  trigger:
+    type: text
+    value: mvlba.btn.bank_accounts
+  message: mvlbaBankAccounts.msg.root
+  keyboard_name: manage_objects
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.manage.c.bank_accounts.c
+  c: $FILE ./scripts-c-manage-c-bank_accounts-c.yml
