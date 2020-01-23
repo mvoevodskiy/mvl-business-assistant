@@ -20,17 +20,6 @@ c:
     keyboard_name: main_director
     command: true
 
-  contractors:
-    trigger:
-      type: text
-      value:
-        - /contractors
-    action:
-      type: method
-      value: mvlbaContractor.getAll
-    keyboard_name: main-director
-    command: true
-
   btns:
     trigger:
       type: text
@@ -41,7 +30,7 @@ c:
       value: mvlbaContractor.btns
     command: true
 
-  write_till:
+  write_cash:
     trigger:
       type: text
       value: < Записать в кассу >
@@ -62,8 +51,8 @@ c:
       validator:
       validator-params:
       success:
-        goto: c.write_till.c.cost_type
-    c: $FILE ./scripts-c-write_till-c.yml
+        goto: c.write_cash.c.cost_type
+    c: $FILE ./scripts-c-write_cash-c.yml
 
   manage:
     trigger:
