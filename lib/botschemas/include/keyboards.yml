@@ -3,12 +3,8 @@ manage:
     - - mvlba.btn.contractors
       - mvlba.btn.bank_accounts
     - - mvlba.btn.workers
-      - <  >
+      - <    >
     - - common.btn.menu.main
-  options:
-    - extra
-    - simple
-    - resize
 
 manage_objects:
   buttons:
@@ -26,8 +22,4 @@ manage_object:
 #    - <  >
     - - common.btn.menu.manage
       - common.btn.menu.main
-  options:
-    - extra
-    - simple
-    - resize
 
