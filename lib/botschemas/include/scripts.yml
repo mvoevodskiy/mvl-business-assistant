@@ -20,16 +20,6 @@ c:
     keyboard_name: main_director
     command: true
 
-  btns:
-    trigger:
-      type: text
-      value:
-        - /btns
-    action:
-      type: method
-      value: mvlbaContractor.btns
-    command: true
-
   write_cash:
     trigger:
       type: text
