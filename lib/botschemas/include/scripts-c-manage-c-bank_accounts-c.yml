@@ -68,7 +68,7 @@ add:
         validator:
         validator-params:
         success:
-          goto: c.manage.c.bank_accounts.c.add.c.bank
+          goto: c.manage.c.bank_accounts.c.add.c.bank_name
       store:
         key: name
         thread: manage_bank_accounts_add
@@ -107,5 +107,7 @@ download:
     value: mvlbaBankAccounts.download
 
 help_unknown_action:
-  message: common.msg.unknown_action
+  message: common.msg.action.unknown
   goto: c.manage.c.bank_accounts
+
+type: {}

@@ -24,3 +24,7 @@ bank_accounts:
     success:
       goto: c.manage.c.bank_accounts.c
   c: $FILE ./scripts-c-manage-c-bank_accounts-c.yml
+
+help_unknown_action:
+  message: common.msg.action.unknown
+  goto: c.manage.c.bank_accounts
