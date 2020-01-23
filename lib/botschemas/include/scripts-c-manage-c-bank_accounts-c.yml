@@ -12,8 +12,9 @@ find:
     failure:
       goto: c.manage.c.bank_accounts.c.find
       help: c.manage.c.bank_accounts.c.find.c.help_nothing
-  store: query
-  store_thread: manage_bank_accounts
+  store:
+    key: query
+    thread: manage_bank_accounts
   c:
     list:
       action:
@@ -27,8 +28,9 @@ find:
         failure:
           goto: c.manage.c.bank_accounts.c.find
           help: c.manage.c.bank_accounts.c.find.c.help_nothing
-      store: selected
-      store_thread: manage_bank_accounts
+      store:
+        key: selected
+        thread: manage_bank_accounts
     manage:
       action:
         type: method
@@ -67,12 +69,10 @@ add:
         validator-params:
         success:
           goto: c.manage.c.bank_accounts.c.add.c.bank
-      #            failure:
-      #              goto: c.manage.c.bank_accounts.c.find
-      #              help: c.manage.c.bank_accounts.c.find.c.help_nothing
-      store: name
-      store_thread: manage_bank_accounts_add
-      store_clean: true
+      store:
+        key: name
+        thread: manage_bank_accounts_add
+        clean: true
     bank_name:
       message: mvlbaBankAccounts.msg.add.bank_name
       validate:
@@ -80,11 +80,9 @@ add:
         validator-params:
         success:
           goto: c.manage.c.bank_accounts.c.add.c.bik
-      #            failure:
-      #              goto: c.manage.c.bank_accounts.c.find
-      #              help: c.manage.c.bank_accounts.c.find.c.help_nothing
-      store: bank_name
-      store_thread: manage_bank_accounts_add
+      store:
+        key: bank_name
+        thread: manage_bank_accounts_add
     bik:
       message: mvlbaBankAccounts.msg.add.bik
       validate:
@@ -92,11 +90,9 @@ add:
         validator-params:
         success:
           goto: c.manage.c.bank_accounts.c.add.c.final
-      #            failure:
-      #              goto: c.manage.c.bank_accounts.c.find
-      #              help: c.manage.c.bank_accounts.c.find.c.help_nothing
-      store: bik
-      store_thread: manage_bank_accounts_add
+      store:
+        key: bik
+        thread: manage_bank_accounts_add
     final:
       action:
         type: method

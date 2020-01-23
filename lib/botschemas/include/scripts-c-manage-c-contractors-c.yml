@@ -12,8 +12,9 @@ find:
     failure:
       goto: c.manage.c.contractors.c.find
       help: c.manage.c.contractors.c.find.c.help_nothing
-  store: query
-  store_thread: manage_contractors
+  store:
+    key: query
+    thread: manage_contractors
   c:
     list:
       action:
@@ -27,8 +28,9 @@ find:
         failure:
           goto: c.manage.c.contractors.c.find
           help: c.manage.c.contractors.c.find.c.help_nothing
-      store: selected
-      store_thread: manage_contractors
+      store:
+        key: selected
+        thread: manage_contractors
     manage:
       action:
         type: method
@@ -67,9 +69,10 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.alias
-      store: name
-      store_thread: manage_contractors_add
-      store_clean: true
+      store:
+        key: name
+        thread: manage_contractors_add
+        clean: true
     alias:
       message: mvlbaContractors.msg.add.alias
       validate:
@@ -77,8 +80,9 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.fullname
-      store: alias
-      store_thread: manage_contractors_add
+      store:
+        key: alias
+        thread: manage_contractors_add
     fullname:
       message: mvlbaContractors.msg.add.fullname
       validate:
@@ -86,8 +90,9 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.req_inn
-      store: fullname
-      store_thread: manage_contractors_add
+      store:
+        key: fullname
+        thread: manage_contractors_add
     req_inn:
       message: mvlbaContractors.msg.add.req_inn
       validate:
@@ -95,8 +100,9 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.req_kpp
-      store: req_inn
-      store_thread: manage_contractors_add
+      store:
+        key: req_inn
+        thread: manage_contractors_add
     req_kpp:
       message: mvlbaContractors.msg.add.req_kpp
       validate:
@@ -104,8 +110,9 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.req_bik
-      store: req_kpp
-      store_thread: manage_contractors_add
+      store:
+        key: req_kpp
+        thread: manage_contractors_add
     req_bik:
       message: mvlbaContractors.msg.add.req_bik
       validate:
@@ -113,8 +120,9 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.phone
-      store: req_bik
-      store_thread: manage_contractors_add
+      store:
+        key: req_bik
+        thread: manage_contractors_add
     phone:
       message: mvlbaContractors.msg.add.phone
       validate:
@@ -122,8 +130,9 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.address
-      store: phone
-      store_thread: manage_contractors_add
+      store:
+        key: phone
+        thread: manage_contractors_add
     address:
       message: mvlbaContractors.msg.add.address
       validate:
@@ -131,8 +140,9 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.final
-      store: address
-      store_thread: manage_contractors_add
+      store:
+        key: address
+        thread: manage_contractors_add
     final:
       action:
         type: method
