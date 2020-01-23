@@ -23,3 +23,14 @@ manage_object:
     - - common.btn.menu.manage
       - common.btn.menu.main
 
+main_director:
+  buttons:
+    - common.btn.menu.write_cash
+    - common.btn.menu.give_accountable
+    - common.btn.menu.reports
+    - common.btn.menu.work_plans
+    - common.btn.menu.main
+
+to-main:
+  buttons:
+    - common.btn.menu.main
