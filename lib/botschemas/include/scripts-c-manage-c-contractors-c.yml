@@ -110,7 +110,7 @@ add:
         success:
           goto: c.manage.c.contractors.c.add.c.req_kpp
       store:
-        key: req_inn
+        key: reqInn
         thread: manage_contractors_add
     req_kpp:
       message: mvlbaContractors.msg.add.req_kpp
@@ -120,7 +120,7 @@ add:
         success:
           goto: c.manage.c.contractors.c.add.c.req_bik
       store:
-        key: req_kpp
+        key: reqKpp
         thread: manage_contractors_add
     req_bik:
       message: mvlbaContractors.msg.add.req_bik
@@ -130,7 +130,7 @@ add:
         success:
           goto: c.manage.c.contractors.c.add.c.phone
       store:
-        key: req_bik
+        key: reqBik
         thread: manage_contractors_add
     phone:
       message: mvlbaContractors.msg.add.phone

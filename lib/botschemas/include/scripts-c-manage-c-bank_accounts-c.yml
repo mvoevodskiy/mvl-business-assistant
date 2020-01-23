@@ -90,7 +90,7 @@ add:
         success:
           goto: c.manage.c.bank_accounts.c.add.c.bik
       store:
-        key: bank_name
+        key: bankName
         thread: manage_bank_accounts_add
     bik:
       message: mvlbaBankAccounts.msg.add.bik

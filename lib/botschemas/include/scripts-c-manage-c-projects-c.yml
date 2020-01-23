@@ -105,7 +105,7 @@ add:
     pay_type:
       message: mvlbaProjects.msg.add.pay_type
       store:
-        key: pay_type
+        key: payType
         thread: manage_projects_add
       validate:
         validator:
