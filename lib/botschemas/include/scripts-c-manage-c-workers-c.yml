@@ -1,0 +1,125 @@
+# c.manage.c.workers.c
+find:
+  trigger:
+    type: text
+    value: common.btn.action.find
+  message: mvlbaWorkers.msg.find
+  validate:
+    validator: mvlbaWorkers.find_vld
+    validator-params:
+    success:
+      goto: c.manage.c.workers.c.find.c.list
+    failure:
+      goto: c.manage.c.workers.c.find
+      help: c.manage.c.workers.c.find.c.help_nothing
+  store:
+    key: query
+    thread: manage_workers
+  c:
+    list:
+      action:
+        type: method
+        value: mvlbaWorkers.list_act
+      validate:
+        validator: mvlbaWorkers.single_select_vld
+        validator-params:
+        success:
+          goto: c.manage.c.workers.c.find.c.manage
+        failure:
+          goto: c.manage.c.workers.c.find
+          help: c.manage.c.workers.c.find.c.help_nothing
+      store:
+        key: selected
+        thread: manage_workers
+    manage:
+      action:
+        type: method
+        value: mvlbaWorkers.singleManageActions_act
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.workers.c.find.c.manage.c
+      c:
+        edit:
+          trigger:
+            type: text
+            value: common.btn.action.edit
+          message: mvlbaWorkers.msg.edit_single
+          goto: c.manage.c.workers.c.find.c.manage
+        enable_disable:
+          trigger:
+            type: text
+            value: common.btn.action.enable_disable
+          message: mvlbaWorkers.msg.enable_disable
+          action:
+            type: method
+            value: mvlbaWorkers.enableDisable_act
+          goto: c.manage.c.workers.c.find.c.manage
+
+        default:
+          goto: c.manage.c.workers.c.find.c.manage
+
+    help_nothing:
+      message: common.msg.nothing_found
+#      goto: c.manage.c.workers
+
+add:
+  trigger:
+    type: text
+    value: common.btn.action.add
+  message: mvlbaWorkers.msg.add.start
+  goto: c.manage.c.workers.c.add.c.name
+  c:
+    name:
+      message: mvlbaWorkers.msg.add.name
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.workers.c.add.c.role
+      store:
+        key: name
+        thread: manage_workers_add
+        clean: true
+    role:
+      message: mvlbaWorkers.msg.add.role
+      keyboard:
+        buttons:
+          - Директор
+          - Прораб
+          - Строитель
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.workers.c.add.c.phone
+      store:
+        key: role
+        thread: manage_workers_add
+    phone:
+      message: mvlbaWorkers.msg.add.phone
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.workers.c.add.c.final
+      store:
+        key: phone
+        thread: manage_workers_add
+    final:
+      action:
+        type: method
+        value: mvlbaWorkers.add_act
+
+download:
+  trigger:
+    type: text
+    value: common.btn.download_sheet
+  action:
+    type: method
+    value: mvlbaWorkers.download
+
+help_unknown_action:
+  message: common.msg.action.unknown
+  goto: c.manage.c.workers

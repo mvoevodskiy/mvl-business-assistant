@@ -25,6 +25,19 @@ bank_accounts:
       goto: c.manage.c.bank_accounts.c
   c: $FILE ./scripts-c-manage-c-bank_accounts-c.yml
 
+workers:
+  trigger:
+    type: text
+    value: mvlba.btn.workers
+  message: mvlbaWorkers.msg.root
+  keyboard_name: manage_objects
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.manage.c.workers.c
+  c: $FILE ./scripts-c-manage-c-workers-c.yml
+
 help_unknown_action:
   message: common.msg.action.unknown
   goto: c.manage.c.bank_accounts
