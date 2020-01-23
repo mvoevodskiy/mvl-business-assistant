@@ -38,6 +38,19 @@ workers:
       goto: c.manage.c.workers.c
   c: $FILE ./scripts-c-manage-c-workers-c.yml
 
+projects:
+  trigger:
+    type: text
+    value: mvlba.btn.projects
+  message: mvlbaProjects.msg.root
+  keyboard_name: manage_objects
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: c.manage.c.projects.c
+  c: $FILE ./scripts-c-manage-c-projects-c.yml
+
 help_unknown_action:
   message: common.msg.action.unknown
   goto: c.manage.c.bank_accounts

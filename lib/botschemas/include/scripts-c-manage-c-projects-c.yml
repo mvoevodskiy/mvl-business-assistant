@@ -1,0 +1,220 @@
+# c.manage.c.projects.c
+find:
+  trigger:
+    type: text
+    value: common.btn.action.find
+  message: mvlbaProjects.msg.find
+  validate:
+    validator: mvlbaProjects.find_vld
+    validator-params:
+    success:
+      goto: c.manage.c.projects.c.find.c.list
+    failure:
+      goto: c.manage.c.projects.c.find
+      help: c.manage.c.projects.c.find.c.help_nothing
+  store:
+    key: query
+    thread: manage_projects
+  c:
+    list:
+      action:
+        type: method
+        value: mvlbaProjects.list_act
+      validate:
+        validator: mvlbaProjects.single_select_vld
+        validator-params:
+        success:
+          goto: c.manage.c.projects.c.find.c.manage
+        failure:
+          goto: c.manage.c.projects.c.find
+          help: c.manage.c.projects.c.find.c.help_nothing
+      store:
+        key: selected
+        thread: manage_projects
+    manage:
+      action:
+        type: method
+        value: mvlbaProjects.singleManageActions_act
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.projects.c.find.c.manage.c
+      c:
+        edit:
+          trigger:
+            type: text
+            value: common.btn.action.edit
+          message: mvlbaProjects.msg.edit_single
+          goto: c.manage.c.projects.c.find.c.manage
+        enable_disable:
+          trigger:
+            type: text
+            value: common.btn.action.enable_disable
+          message: mvlbaProjects.msg.enable_disable
+          action:
+            type: method
+            value: mvlbaProjects.enableDisable_act
+          goto: c.manage.c.projects.c.find.c.manage
+
+        default:
+          goto: c.manage.c.projects.c.find.c.manage
+
+    help_nothing:
+      message: common.msg.nothing_found
+#      goto: c.manage.c.projects
+
+add:
+  trigger:
+    type: text
+    value: common.btn.action.add
+  message: mvlbaProjects.msg.add.start
+  goto: c.manage.c.projects.c.add.c.name
+  c:
+    name:
+      message: mvlbaProjects.msg.add.name
+      store:
+        key: name
+        thread: manage_projects_add
+        clean: true
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.projects.c.add.c.amount
+    amount:
+      message: mvlbaProjects.msg.add.amount
+      store:
+        key: amount
+        thread: manage_projects_add
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.projects.c.add.c.deadline
+    deadline:
+      message: mvlbaProjects.msg.add.deadline
+      store:
+        key: deadline
+        thread: manage_projects_add
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.projects.c.add.c.pay_type
+    pay_type:
+      message: mvlbaProjects.msg.add.pay_type
+      store:
+        key: pay_type
+        thread: manage_projects_add
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.projects.c.add.c.responsible_find
+    responsible_find:
+      message: mvlbaProjects.msg.add.responsible_find
+      validate:
+        validator: mvlbaWorkers.find_vld
+        validator-params:
+        success:
+          goto: c.manage.c.projects.c.add.c.responsible_list
+        failure:
+          goto: c.manage.c.projects.c.add.c.responsible_find
+          help: c.manage.c.contractors.c.find.c.help_nothing
+      store:
+        key: query
+        thread: manage_contractors
+    responsible_list:
+      action:
+        type: method
+        value: mvlbaWorkers.list_act
+      validate:
+        validator: mvlbaWorkers.single_select_vld
+        validator-params:
+        success:
+          goto: c.manage.c.projects.c.add.c.contractor_find
+        failure:
+          goto: c.manage.c.projects.c.add.c.responsible_find
+          help: c.manage.c.workers.c.find.c.help_nothing
+      store:
+        key: responsible
+        thread: manage_projects_add
+    contractor_find:
+      message: mvlbaProjects.msg.add.contractor_find
+      validate:
+        validator: mvlbaContractors.find_vld
+        validator-params:
+        success:
+          goto: c.manage.c.projects.c.add.c.contractor_list
+        failure:
+          goto: c.manage.c.projects.c.add.c.contractor_find
+          help: c.manage.c.contractors.c.find.c.help_nothing
+      store:
+        key: query
+        thread: manage_contractors
+    contractor_list:
+      action:
+        type: method
+        value: mvlbaContractors.list_act
+      validate:
+        validator: mvlbaContractors.single_select_vld
+        validator-params:
+        success:
+          goto: c.manage.c.projects.c.add.c.public
+        failure:
+          goto: c.manage.c.projects.c.add.c.contractor_find
+          help: c.manage.c.contractors.c.find.c.help_nothing
+      store:
+        key: contractor
+        thread: manage_projects_add
+    public:
+      message: mvlbaProjects.msg.add.public
+      keyboard:
+        buttons:
+          - common.btn.msg.yes
+          - common.btn.msg.no
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: c.manage.c.projects.c.add.c.public.c
+      c:
+        yes:
+          trigger:
+            type: text
+            value: common.btn.msg.yes
+          store_pre:
+            key: public
+            thread: manage_projects_add
+            value: 1
+          goto: c.manage.c.projects.c.add.c.final
+        no:
+          trigger:
+            type: text
+            value: common.btn.msg.no
+          store_pre:
+            key: public
+            thread: manage_projects_add
+            value: 0
+          goto: c.manage.c.projects.c.add.c.final
+        default:
+          message: common.msg.unknown_try
+          goto: c.manage.c.projects.c.add.c.public
+    final:
+      action:
+        type: method
+        value: mvlbaProjects.add_act
+      goto: c.manage.c.projects
+
+download:
+  trigger:
+    type: text
+    value: common.btn.download_sheet
+  action:
+    type: method
+    value: mvlbaProjects.download
+
+help_unknown_action:
+  message: common.msg.action.unknown
+  goto: c.manage.c.projects
