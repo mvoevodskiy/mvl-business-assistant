@@ -3,7 +3,7 @@ manage:
     - - mvlba.btn.contractors
       - mvlba.btn.bank_accounts
     - - mvlba.btn.workers
-      - <    >
+      - mvlba.btn.projects
     - - common.btn.menu.main
 
 manage_objects:
