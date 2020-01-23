@@ -67,9 +67,6 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.alias
-      #            failure:
-      #              goto: c.manage.c.contractors.c.find
-      #              help: c.manage.c.contractors.c.find.c.help_nothing
       store: name
       store_thread: manage_contractors_add
       store_clean: true
@@ -80,9 +77,6 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.fullname
-      #            failure:
-      #              goto: c.manage.c.contractors.c.find
-      #              help: c.manage.c.contractors.c.find.c.help_nothing
       store: alias
       store_thread: manage_contractors_add
     fullname:
@@ -92,9 +86,6 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.req_inn
-      #            failure:
-      #              goto: c.manage.c.contractors.c.find
-      #              help: c.manage.c.contractors.c.find.c.help_nothing
       store: fullname
       store_thread: manage_contractors_add
     req_inn:
@@ -104,9 +95,6 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.req_kpp
-      #            failure:
-      #              goto: c.manage.c.contractors.c.find
-      #              help: c.manage.c.contractors.c.find.c.help_nothing
       store: req_inn
       store_thread: manage_contractors_add
     req_kpp:
@@ -116,9 +104,6 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.req_bik
-      #            failure:
-      #              goto: c.manage.c.contractors.c.find
-      #              help: c.manage.c.contractors.c.find.c.help_nothing
       store: req_kpp
       store_thread: manage_contractors_add
     req_bik:
@@ -128,9 +113,6 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.phone
-      #            failure:
-      #              goto: c.manage.c.contractors.c.find
-      #              help: c.manage.c.contractors.c.find.c.help_nothing
       store: req_bik
       store_thread: manage_contractors_add
     phone:
@@ -140,9 +122,6 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.address
-      #            failure:
-      #              goto: c.manage.c.contractors.c.find
-      #              help: c.manage.c.contractors.c.find.c.help_nothing
       store: phone
       store_thread: manage_contractors_add
     address:
@@ -152,9 +131,6 @@ add:
         validator-params:
         success:
           goto: c.manage.c.contractors.c.add.c.final
-      #            failure:
-      #              goto: c.manage.c.contractors.c.find
-      #              help: c.manage.c.contractors.c.find.c.help_nothing
       store: address
       store_thread: manage_contractors_add
     final:
@@ -171,5 +147,5 @@ download:
     value: mvlbaContractors.download
 
 help_unknown_action:
-  message: common.msg.unknown_action
+  message: common.msg.action.unknown
   goto: c.manage.c.contractors
