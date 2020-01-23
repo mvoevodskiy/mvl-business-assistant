@@ -47,6 +47,15 @@ find:
             value: common.btn.action.edit
           message: mvlbaContractors.msg.edit_single
           goto: c.manage.c.contractors.c.find.c.manage
+        enable_disable:
+          trigger:
+            type: text
+            value: common.btn.action.enable_disable
+          message: mvlbaWorkers.msg.enable_disable
+          action:
+            type: method
+            value: mvlbaWorkers.enableDisable_act
+          goto: c.manage.c.workers.c.find.c.manage
 
         default:
           goto: c.manage.c.contractors.c.find.c.manage
