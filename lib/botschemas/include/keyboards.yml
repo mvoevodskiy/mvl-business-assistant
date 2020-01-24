@@ -29,7 +29,7 @@ main_director:
     - common.btn.menu.give_accountable
     - common.btn.menu.reports
     - common.btn.menu.work_plans
-    - common.btn.menu.main
+    - common.btn.menu.manage
 
 to-main:
   buttons:
