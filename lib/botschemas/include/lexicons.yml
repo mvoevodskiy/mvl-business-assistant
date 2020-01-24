@@ -126,7 +126,7 @@ ru:
         Название: ((name))
         Бюджет: ((amount))
         Срок выполнения: ((deadline))
-        Тип оплаты: ((pay_type))
+        Тип оплаты: ((payType))
         Ответственный: ((responsible))
         Контрагент: ((contractor))
         Для всех: ((public))
