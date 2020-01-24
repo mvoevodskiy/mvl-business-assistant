@@ -6,6 +6,7 @@ manage:
       - mvlba.btn.projects
     - - mvlba.btn.cost_types
       - mvlba.btn.cost_articles
+    - - mvlba.btn.cash_types
     - - common.btn.menu.main
 
 manage_objects:

@@ -77,6 +77,19 @@ cost_articles:
       goto: ((path)).c
   c: $FILE ./scripts-c-manage-c-cost_articles-c.yml
 
+cash_types:
+  trigger:
+    type: text
+    value: mvlba.btn.cash_types
+  message: mvlbaCashTypes.msg.root
+  keyboard_name: manage_objects
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: ((path)).c
+  c: $FILE ./scripts-c-manage-c-cash_types-c.yml
+
 help_unknown_action:
   message: common.msg.action.unknown
   goto: c.manage.c.bank_accounts
