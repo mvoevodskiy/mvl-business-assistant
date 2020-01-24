@@ -51,6 +51,32 @@ projects:
       goto: c.manage.c.projects.c
   c: $FILE ./scripts-c-manage-c-projects-c.yml
 
+cost_types:
+  trigger:
+    type: text
+    value: mvlba.btn.cost_types
+  message: mvlbaCostTypes.msg.root
+  keyboard_name: manage_objects
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: ((path)).c
+  c: $FILE ./scripts-c-manage-c-cost_types-c.yml
+
+cost_articles:
+  trigger:
+    type: text
+    value: mvlba.btn.cost_articles
+  message: mvlbaCostArticles.msg.root
+  keyboard_name: manage_objects
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: ((path)).c
+  c: $FILE ./scripts-c-manage-c-cost_articles-c.yml
+
 help_unknown_action:
   message: common.msg.action.unknown
   goto: c.manage.c.bank_accounts

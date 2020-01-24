@@ -1,0 +1,96 @@
+# c.manage.c.cost_articles.c
+find:
+  trigger:
+    type: text
+    value: common.btn.action.find
+  message: mvlbaCostArticles.msg.find
+  validate:
+    validator: mvlbaCostArticles.find_vld
+    failure:
+      goto: ((path)).c.find
+      help: ((path)).c.help_nothing
+    success:
+      goto: ((path)).c.list
+  store:
+    key: query
+    thread: manage_cost_articles
+  c:
+    list:
+      action:
+        type: method
+        value: mvlbaCostArticles.list_act
+      validate:
+        validator: mvlbaCostArticles.single_select_vld
+        validator-params:
+        success:
+          goto: ((parent)).manage
+        failure:
+          goto: c.manage.c.cost_articles.c.find
+          help: ((parent)).help_nothing
+      store:
+        key: selected
+        thread: manage_cost_articles
+    manage:
+      action:
+        type: method
+        value: mvlbaCostArticles.singleManageActions_act
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: ((path)).c
+      c:
+        edit:
+          trigger:
+            type: text
+            value: common.btn.action.edit
+          message: mvlbaCostArticles.msg.edit_single
+          goto: c.manage.c.cost_articles.c.find.c.manage
+        enable_disable:
+          trigger:
+            type: text
+            value: common.btn.action.enable_disable
+          message: mvlbaCostArticles.msg.enable_disable
+          action:
+            type: method
+            value: mvlbaCostArticles.enableDisable_act
+          goto: c.manage.c.cost_articles.c.find.c.manage
+
+        default:
+          goto: c.manage.c.cost_articles.c.find.c.manage
+
+    help_nothing:
+      message: common.msg.nothing_found
+
+add:
+  trigger:
+    type: text
+    value: common.btn.action.add
+  message: mvlbaCostArticles.msg.add.start
+  goto: ((path)).c.value
+  c:
+    value:
+      message: mvlbaCostArticles.msg.add.value
+      store:
+        key: value
+        thread: manage_cost_articles_add
+        clean: true
+      validate:
+        success:
+          goto: ((parent)).final
+    final:
+      action:
+        type: method
+        value: mvlbaCostArticles.add_act
+
+download:
+  trigger:
+    type: text
+    value: common.btn.download_sheet
+  action:
+    type: method
+    value: mvlbaCostArticles.download
+
+help_unknown_action:
+  message: common.msg.action.unknown
+  goto: c.manage.c.cost_articles

@@ -1,0 +1,96 @@
+# c.manage.c.cost_types.c
+find:
+  trigger:
+    type: text
+    value: common.btn.action.find
+  message: mvlbaCostTypes.msg.find
+  validate:
+    validator: mvlbaCostTypes.find_vld
+    failure:
+      goto: ((path))
+      help: ((path)).c.help_nothing
+    success:
+      goto: ((path)).c.list
+  store:
+    key: query
+    thread: manage_cost_types
+  c:
+    list:
+      action:
+        type: method
+        value: mvlbaCostTypes.list_act
+      validate:
+        validator: mvlbaCostTypes.single_select_vld
+        validator-params:
+        success:
+          goto: ((parent)).manage
+        failure:
+          goto: c.manage.c.cost_types.c.find
+          help: ((parent)).help_nothing
+      store:
+        key: selected
+        thread: manage_cost_types
+    manage:
+      action:
+        type: method
+        value: mvlbaCostTypes.singleManageActions_act
+      validate:
+        validator:
+        validator-params:
+        success:
+          goto: ((path)).c
+      c:
+        edit:
+          trigger:
+            type: text
+            value: common.btn.action.edit
+          message: mvlbaCostTypes.msg.edit_single
+          goto: c.manage.c.cost_types.c.find.c.manage
+        enable_disable:
+          trigger:
+            type: text
+            value: common.btn.action.enable_disable
+          message: mvlbaCostTypes.msg.enable_disable
+          action:
+            type: method
+            value: mvlbaCostTypes.enableDisable_act
+          goto: c.manage.c.cost_types.c.find.c.manage
+
+        default:
+          goto: c.manage.c.cost_types.c.find.c.manage
+
+    help_nothing:
+      message: common.msg.nothing_found
+
+add:
+  trigger:
+    type: text
+    value: common.btn.action.add
+  message: mvlbaCostTypes.msg.add.start
+  goto: ((path)).c.value
+  c:
+    value:
+      message: mvlbaCostTypes.msg.add.value
+      store:
+        key: value
+        thread: manage_cost_types_add
+        clean: true
+      validate:
+        success:
+          goto: ((parent)).final
+    final:
+      action:
+        type: method
+        value: mvlbaCostTypes.add_act
+
+download:
+  trigger:
+    type: text
+    value: common.btn.download_sheet
+  action:
+    type: method
+    value: mvlbaCostTypes.download
+
+help_unknown_action:
+  message: common.msg.action.unknown
+  goto: c.manage.c.cost_types
