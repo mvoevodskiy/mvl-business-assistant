@@ -23,25 +23,10 @@ c:
   write_cash:
     trigger:
       type: text
-      value: < Записать в кассу >
-    message: Выберите объект
+      value: common.btn.menu.write_cash
+    message: mvlbaCash.add.start
     command: true
-    keyboard:
-      buttons:
-        - Бизнес Центр отделка
-        - Монтаж видеонаблюдения
-        - Квартира Черная речка
-        - Отделка загородного дома
-        - Компания
-      options:
-        - extra
-        - simple
-        - resize
-    validate:
-      validator:
-      validator-params:
-      success:
-        goto: c.write_cash.c.cost_type
+    goto: ((path)).c.project
     c: $FILE ./scripts-c-write_cash-c.yml
 
   manage:
@@ -54,6 +39,6 @@ c:
       validator:
       validator-params:
       success:
-        goto: c.manage.c
+        goto: ((path)).c
     command: true
     c: $FILE ./scripts-c-manage-c.yml
