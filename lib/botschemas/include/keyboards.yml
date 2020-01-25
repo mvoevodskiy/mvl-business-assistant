@@ -27,10 +27,10 @@ manage_object:
 
 main_director:
   buttons:
-    - mvlba.btn.write_cash
-    - mvlba.btn.give_accountable
-    - mvlba.btn.work_plans
-    - common.btn.menu.reports
+    - - mvlba.btn.write_cash
+      - mvlba.btn.give_accountable
+    - - mvlba.btn.work_plans
+      - common.btn.menu.reports
     - common.btn.menu.manage
 
 to-main:
