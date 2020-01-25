@@ -12,7 +12,7 @@ manage:
 manage_objects:
   buttons:
     - - common.btn.action.find
-    - - common.btn.action.add
+      - common.btn.action.add
     - - mvlba.btn.download_sheet
 #    - <  >
     - - common.btn.menu.manage
@@ -21,17 +21,16 @@ manage_objects:
 manage_object:
   buttons:
     - - common.btn.action.edit
-    - - common.btn.action.enable_disable
-#    - <  >
+      - common.btn.action.enable_disable
     - - common.btn.menu.manage
       - common.btn.menu.main
 
 main_director:
   buttons:
-    - common.btn.menu.write_cash
-    - common.btn.menu.give_accountable
+    - mvlba.btn.write_cash
+    - mvlba.btn.give_accountable
+    - mvlba.btn.work_plans
     - common.btn.menu.reports
-    - common.btn.menu.work_plans
     - common.btn.menu.manage
 
 to-main:

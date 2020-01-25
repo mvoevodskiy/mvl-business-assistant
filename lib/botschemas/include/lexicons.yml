@@ -9,6 +9,9 @@ ru:
       workers: < Сотрудники >
       projects: < Проекты >
       download_sheet: < Скачать выгрузку >
+      write_cash: < Записать в кассу >
+      give_accountable: < Выдать в подотчет >
+      work_plans: < Планы выработки >
 
   common:
     msg:
@@ -24,10 +27,7 @@ ru:
         main: < Главное меню >
         back: < Назад >
         manage: < Управление >
-        write_cash: < Записать в кассу >
-        give_accountable: < Выдать в подотчет >
         reports: < Отчеты >
-        work_plans: < Планы выработки >
       action:
         add: < Добавить >
         remove: < Удалить >

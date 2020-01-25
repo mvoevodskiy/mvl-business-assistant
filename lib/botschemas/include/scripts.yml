@@ -23,7 +23,7 @@ c:
   write_cash:
     trigger:
       type: text
-      value: common.btn.menu.write_cash
+      value: mvlba.btn.write_cash
     message: mvlbaCash.add.start
     command: true
     goto: ((path)).c.project_find
