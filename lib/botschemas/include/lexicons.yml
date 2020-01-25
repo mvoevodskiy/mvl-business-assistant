@@ -1,17 +1,17 @@
 ru:
   mvlba:
     btn:
-      contractors: < Контрагенты >
-      cash_types: < Типы денег >
-      cost_articles: < Статьи расходов >
-      cost_types: < Типы расходов >
-      bank_accounts: < Счета в банках >
-      workers: < Сотрудники >
-      projects: < Проекты >
-      download_sheet: < Скачать выгрузку >
-      write_cash: < Записать в кассу >
-      give_accountable: < Выдать в подотчет >
-      work_plans: < Планы выработки >
+      contractors: Контрагенты
+      cash_types: Типы денег
+      cost_articles: Статьи расходов
+      cost_types: Типы расходов
+      bank_accounts: Счета в банках
+      workers: Сотрудники
+      projects: Проекты
+      download_sheet: Скачать выгрузку
+      write_cash: Записать в кассу
+      give_accountable: Выдать в подотчет
+      work_plans: Планы выработки
 
   common:
     msg:
@@ -24,17 +24,17 @@ ru:
       unknown_try: Не распознано, повторите
     btn:
       menu:
-        main: < Главное меню >
-        back: < Назад >
-        manage: < Управление >
-        reports: < Отчеты >
+        main: Главное меню
+        back: Назад
+        manage: Управление
+        reports: Отчеты
       action:
-        add: < Добавить >
-        remove: < Удалить >
-        find: < Найти >
-        search: < Поиск >
-        enable_disable: < Включить / Отключить >
-        edit: < Редактировать >
+        add: Добавить
+        remove: Удалить
+        find: Найти
+        search: Поиск
+        enable_disable: Включить / Отключить
+        edit: Редактировать
       msg:
         yes: Да
         no: Нет
@@ -186,7 +186,7 @@ ru:
 en:
   btn:
     menu:
-      main: < Главное меню EN >
-      back: < Назад EN >
+      main: Главное меню EN
+      back: Назад EN
     action:
-      remove: < Удалить EN >
+      remove: Удалить EN
