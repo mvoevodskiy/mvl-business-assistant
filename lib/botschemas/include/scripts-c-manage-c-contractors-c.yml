@@ -4,6 +4,8 @@ find:
     type: text
     value: common.btn.action.find
   message: mvlbaContractors.msg.find
+  keyboard:
+    clear: true
   validate:
     validator: mvlbaContractors.find_vld
     validator-params:
