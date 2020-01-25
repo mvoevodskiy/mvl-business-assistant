@@ -62,7 +62,6 @@ find:
 
     help_nothing:
       message: common.msg.nothing_found
-      goto: c.manage.c.contractors
 
 add:
   trigger:

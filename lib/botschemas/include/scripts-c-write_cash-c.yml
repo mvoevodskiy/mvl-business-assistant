@@ -1,149 +1,242 @@
-# c.write_till.c
+# c.write_cash.c
+project_find:
+  message: mvlbaProjects.msg.add.project_find
+  store:
+    key: query
+    thread: write_cash_add
+  validate:
+    validator: mvlbaProjects.find_vld
+    failure:
+      goto: ((parent)).project_find
+      help: c.manage.c.projects.c.find.c.help_nothing
+    success:
+      goto: ((parent)).project_list
+project_list:
+  action:
+    type: method
+    value: mvlbaProjects.list_act
+  store:
+    key: project
+    thread: write_cash_add
+  validate:
+    validator: mvlbaProjects.single_select_vld
+    failure:
+      goto: ((parent)).project_find
+      help: c.manage.c.workers.c.find.c.help_nothing
+    success:
+      goto: ((parent)).cost_type
 cost_type:
-  message: Выберите вид траты
-  keyboard:
-    buttons:
-      - Офис
-      - Объект
-    options:
-      - extra
-      - simple
-      - resize
+  message: mvlbaCash.msg.add.cost_type
+  action:
+    type: method
+    value: mvlbaCostTypes.getAll_act
+  store:
+    key: costType
+    thread: write_cash_add
   validate:
-    validator:
+    validator: mvlbaCostTypes.single_select_vld
     validator-params:
     success:
-      goto: c.write_till.c.partner_type
-partner_type:
-  message: Выберите тип контрагента
-  keyboard:
-    buttons:
-      - Клиент
-      - Подрядчик
-      - Прочие
-    options:
-      - extra
-      - simple
-      - resize
-  validate:
-    validator:
-    validator-params:
-    success:
-      goto: c.write_till.c.partner_name
-partner_name:
-  message: Выберите подрядчика
-  keyboard:
-    buttons:
-      - СТД Петрович
-      - ООО Рент
-      - ООО Компания Вентфорум
-      - ООО Форум
-      - ООО АВК ТЕХНОЛОГИЯ
-    options:
-      - extra
-      - simple
-      - resize
-      - onetime
-  validate:
-    validator:
-    validator-params:
-    success:
-      goto: c.write_till.c.description
+      goto: ((parent)).description
+    failure:
+      goto: ((parent)).cost_type
+      help: ((parent)).help_nothing
 description:
-  message: Напишите пояснение
+  message: mvlbaCash.msg.add.description
+  store:
+    key: description
+    thread: write_cash_add
   validate:
     validator:
     validator-params:
     success:
-      goto: c.write_till.c.cost_section
-cost_section:
-  message: Выберите статью расходов
-  keyboard:
-    buttons:
-      - Авто
-      - Аренда
-      - Банк
-      - Бензин
-      - Бухгалтерия
-      - Выручка
-      - Декретные
-      - Заём
-    options:
-      - extra
-      - simple
-      - resize
-      - onetime
+      goto: ((parent)).cost_article_find
+
+cost_article_find:
+  message: mvlbaProjects.msg.add.cost_article_find
+  store:
+    key: query
+    thread: manage_cost_articles
   validate:
-    validator:
-    validator-params:
+    validator: mvlbaCostArticles.find_vld
+    failure:
+      goto: ((parent)).cost_article_find
+      help: c.manage.c.projects.c.find.c.help_nothing
     success:
-      goto: c.write_till.c.cash_type
+      goto: ((parent)).cost_article_list
+cost_article_list:
+  action:
+    type: method
+    value: mvlbaCostArticles.list_act
+  store:
+    key: costArticle
+    thread: write_cash_add
+  validate:
+    validator: mvlbaCostArticles.single_select_vld
+    failure:
+      goto: ((parent)).cost_article_find
+      help: c.manage.c.workers.c.find.c.help_nothing
+    success:
+      goto: ((parent)).cash_type
 cash_type:
-  message: Выберите тип денег
+  message: mvlbaCash.msg.add.cash_type
+  action:
+    type: method
+    value: mvlbaCashTypes.getAll_act
+  store:
+    key: cashType
+    thread: write_cash_add
+  validate:
+    validator: mvlbaCashTypes.single_select_vld
+    failure:
+      goto: ((parent)).cost_type
+      help: ((parent)).help_nothing
+    success:
+      goto: ((parent)).direction
+
+direction:
+  message: mvlbaCash.msg.add.direction
   keyboard:
     buttons:
-      - Б/Н
-      - Б/Н без движения
-      - Б/Н без НДС
-      - Нал
-      - Нал без НДС
-    options:
-      - extra
-      - simple
-      - resize
-      - onetime
+      - mvlbaCash.btn.in
+      - mvlbaCash.btn.out
+      - mvlbaCash.btn.transfer
   validate:
-    validator:
-    validator-params:
     success:
-      goto: c.write_till.c.bank_out
-bank_out:
-  message: Выберите банк (счет), откуда отправлены деньги
-  keyboard:
-    buttons:
-      - - < Контрагент >
-        - Альфа
-      - - Модуль
-        - Модуль карта
-      - - Сбер
-        - Сбер карта
-    options:
-      - extra
-      - simple
-      - resize
-      - onetime
+      goto: ((path)).c
+  c:
+    in:
+      trigger:
+        type: text
+        value: mvlbaCash.btn.in
+      store_pre:
+        key: direction
+        thread: write_cash_add
+        value: in
+      goto: ((path)).c.bank_in
+      c:
+        bank_in:
+          message: mvlbaCash.msg.add.bank_in
+          action:
+            type: method
+            value: mvlbaBankAccounts.getAll_act
+          store:
+            key: bank_in
+            thread: write_cash_add
+          validate:
+            validator: mvlbaCashTypes.single_select_vld
+            failure:
+              goto: ((parent)).cost_type
+              help: ((parent)).help_nothing
+            success:
+              goto: c.write_cash.c.contractor_find
+    out:
+      trigger:
+        type: text
+        value: mvlbaCash.btn.out
+      store_pre:
+        key: direction
+        thread: write_cash_add
+        value: out
+      goto: ((path)).c.bank_out
+      c:
+        bank_out:
+          message: mvlbaCash.msg.add.bank_out
+          action:
+            type: method
+            value: mvlbaBankAccounts.getAll_act
+          store:
+            key: bank_out
+            thread: write_cash_add
+          validate:
+            validator: mvlbaCashTypes.single_select_vld
+            failure:
+              goto: ((parent)).bank_in
+              help: ((parent)).help_nothing
+            success:
+              goto: c.write_cash.c.contractor_find
+    transfer:
+      trigger:
+        type: text
+        value: mvlbaCash.btn.transfer
+      store_pre:
+        key: direction
+        thread: write_cash_add
+        value: transfer
+      goto: ((path)).c.bank_in
+      c:
+        bank_in:
+          message: mvlbaCash.msg.add.bank_in
+          action:
+            type: method
+            value: mvlbaBankAccounts.getAll_act
+          store:
+            key: bank_in
+            thread: write_cash_add
+          validate:
+            validator: mvlbaCashTypes.single_select_vld
+            failure:
+              goto: ((parent)).bank_in
+              help: ((parent)).help_nothing
+            success:
+              goto: ((parent)).bank_out
+        bank_out:
+          message: mvlbaCash.msg.add.bank_out
+          action:
+            type: method
+            value: mvlbaBankAccounts.getAll_act
+          store:
+            key: bank_out
+            thread: write_cash_add
+          validate:
+            validator: mvlbaCashTypes.single_select_vld
+            failure:
+              goto: ((parent)).bank_out
+              help: ((parent)).help_nothing
+            success:
+              goto: c.write_cash.c.contractor_find
+    default:
+      message: common.msg.unknown_try
+      goto: c.write_cash.c.description
+contractor_find:
+  message: mvlbaCash.msg.add.contractor_find
+  store:
+    key: query
+    thread: manage_contractors
   validate:
-    validator:
-    validator-params:
+    validator: mvlbaContractors.find_vld
+    failure:
+      goto: ((parent)).contractor_find
+      help: c.manage.c.contractors.c.find.c.help_nothing
     success:
-      goto: c.write_till.c.bank_in
-bank_in:
-  message: Выберите банк (счет), куда пришли деньги
-  keyboard:
-    buttons:
-      - - < Контрагент >
-        - Альфа
-      - - Модуль
-        - Модуль карта
-      - - Сбер
-        - Сбер карта
-    options:
-      - extra
-      - simple
-      - resize
-      - onetime
+      goto: ((parent)).contractor_list
+contractor_list:
+  message: mvlbaCashTypes.msg.add.contractor_list
+  action:
+    type: method
+    value: mvlbaContractors.list_act
+  store:
+    key: contractor
+    thread: write_cash_add
   validate:
-    validator:
-    validator-params:
+    validator: mvlbaContractors.single_select_vld
+    failure:
+      goto: ((parent)).contractor_find
+      help: c.manage.c.contractors.c.find.c.help_nothing
     success:
-      goto: c.write_till.c.cost
-cost:
+      goto: ((parent)).amount
+amount:
   message: Укажите сумму
+  store:
+    key: amount
+    thread: write_cash_add
   validate:
-    validator:
-    validator-params:
+    validator: number
+    failure:
+      goto: ((parent)).amount
+      help: ((parent)).help_nothing
     success:
-      goto: c.write_till.c.final
+      goto: ((parent)).final
 final:
   message: Спасибо за информацию, записано!
   keyboard_name: to-main

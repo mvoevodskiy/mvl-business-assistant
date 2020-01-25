@@ -26,7 +26,7 @@ c:
       value: common.btn.menu.write_cash
     message: mvlbaCash.add.start
     command: true
-    goto: ((path)).c.project
+    goto: ((path)).c.project_find
     c: $FILE ./scripts-c-write_cash-c.yml
 
   manage:
