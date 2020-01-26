@@ -1,9 +1,10 @@
 # c.write_cash.c
 project_find:
-  message: mvlbaProjects.msg.add.project_find
+  message: mvlbaCash.msg.add.project_find
   store:
     key: query
     thread: write_cash_add
+    clean: true
   validate:
     validator: mvlbaProjects.find_vld
     failure:
@@ -53,7 +54,7 @@ description:
       goto: ((parent)).cost_article_find
 
 cost_article_find:
-  message: mvlbaProjects.msg.add.cost_article_find
+  message: mvlbaCash.msg.add.cost_article_find
   store:
     key: query
     thread: manage_cost_articles
@@ -121,7 +122,7 @@ direction:
             type: method
             value: mvlbaBankAccounts.getAll_act
           store:
-            key: bank_in
+            key: bankIn
             thread: write_cash_add
           validate:
             validator: mvlbaCashTypes.single_select_vld
@@ -146,7 +147,7 @@ direction:
             type: method
             value: mvlbaBankAccounts.getAll_act
           store:
-            key: bank_out
+            key: bankOut
             thread: write_cash_add
           validate:
             validator: mvlbaCashTypes.single_select_vld
@@ -163,15 +164,30 @@ direction:
         key: direction
         thread: write_cash_add
         value: transfer
-      goto: ((path)).c.bank_in
+      goto: ((path)).c.bank_out
       c:
+        bank_out:
+          message: mvlbaCash.msg.add.bank_out
+          action:
+            type: method
+            value: mvlbaBankAccounts.getAll_act
+          store:
+            key: bankOut
+            thread: write_cash_add
+          validate:
+            validator: mvlbaCashTypes.single_select_vld
+            failure:
+              goto: ((parent)).bank_out
+              help: ((parent)).help_nothing
+            success:
+              goto: c.write_cash.c.bank_in
         bank_in:
           message: mvlbaCash.msg.add.bank_in
           action:
             type: method
             value: mvlbaBankAccounts.getAll_act
           store:
-            key: bank_in
+            key: bankIn
             thread: write_cash_add
           validate:
             validator: mvlbaCashTypes.single_select_vld
@@ -179,22 +195,7 @@ direction:
               goto: ((parent)).bank_in
               help: ((parent)).help_nothing
             success:
-              goto: ((parent)).bank_out
-        bank_out:
-          message: mvlbaCash.msg.add.bank_out
-          action:
-            type: method
-            value: mvlbaBankAccounts.getAll_act
-          store:
-            key: bank_out
-            thread: write_cash_add
-          validate:
-            validator: mvlbaCashTypes.single_select_vld
-            failure:
-              goto: ((parent)).bank_out
-              help: ((parent)).help_nothing
-            success:
-              goto: c.write_cash.c.contractor_find
+              goto: ((parent)).contractor_find
     default:
       message: common.msg.unknown_try
       goto: c.write_cash.c.description
@@ -211,7 +212,7 @@ contractor_find:
     success:
       goto: ((parent)).contractor_list
 contractor_list:
-  message: mvlbaCashTypes.msg.add.contractor_list
+  message: mvlbaCahs.msg.add.contractor_list
   action:
     type: method
     value: mvlbaContractors.list_act
@@ -226,7 +227,7 @@ contractor_list:
     success:
       goto: ((parent)).amount
 amount:
-  message: Укажите сумму
+  message: mvlbaCash.msg.add.amount
   store:
     key: amount
     thread: write_cash_add
@@ -238,5 +239,6 @@ amount:
     success:
       goto: ((parent)).final
 final:
-  message: Спасибо за информацию, записано!
-  keyboard_name: to-main
+  action:
+    type: method
+    value: mvlbaCash.add_act
