@@ -33,6 +33,6 @@ main_director:
       - common.btn.menu.reports
     - common.btn.menu.manage
 
-to-main:
+to_main:
   buttons:
     - common.btn.menu.main
