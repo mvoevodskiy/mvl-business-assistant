@@ -24,7 +24,7 @@ c:
     trigger:
       type: text
       value: mvlba.btn.write_cash
-    message: mvlbaCash.add.start
+    message: mvlbaCash.msg.add.start
     command: true
     goto: ((path)).c.project_find
     c: $FILE ./scripts-c-write_cash-c.yml
