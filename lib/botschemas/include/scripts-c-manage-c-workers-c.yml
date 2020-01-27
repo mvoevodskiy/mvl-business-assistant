@@ -115,10 +115,11 @@ add:
 download:
   trigger:
     type: text
-    value: common.btn.download_sheet
+    value: mvlba.btn.download_sheet
   action:
     type: method
-    value: mvlbaWorkers.download
+    value: mvlbaWorkers.export_act
+  goto: c.manage.c.workers.c
 
 help_unknown_action:
   message: common.msg.action.unknown

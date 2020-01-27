@@ -210,10 +210,10 @@ add:
 download:
   trigger:
     type: text
-    value: common.btn.download_sheet
+    value: mvlba.btn.download_sheet
   action:
     type: method
-    value: mvlbaProjects.download
+    value: mvlbaProjects.export_act
 
 help_unknown_action:
   message: common.msg.action.unknown

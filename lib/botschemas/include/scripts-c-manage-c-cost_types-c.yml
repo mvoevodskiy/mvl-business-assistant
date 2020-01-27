@@ -86,10 +86,11 @@ add:
 download:
   trigger:
     type: text
-    value: common.btn.download_sheet
+    value: mvlba.btn.download_sheet
   action:
     type: method
-    value: mvlbaCostTypes.download
+    value: mvlbaCostTypes.export_act
+  goto: c.manage.c.cost_types.c
 
 help_unknown_action:
   message: common.msg.action.unknown

@@ -110,10 +110,10 @@ add:
 download:
   trigger:
     type: text
-    value: common.btn.mvlba.download_sheet
+    value: mvlba.btn.download_sheet
   action:
     type: method
-    value: mvlbaBankAccounts.download
+    value: mvlbaBankAccounts.export_act
 
 help_unknown_action:
   message: common.msg.action.unknown
