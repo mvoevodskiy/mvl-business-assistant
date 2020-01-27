@@ -12,8 +12,7 @@
     "botcms": "git+https://github.com/mvoevodskiy/BotCMS.git",
     "mvtools": "git+https://github.com/mvoevodskiy/mvtools.git",
     "mvl-db-bot-controller": "git+https://github.com/mvoevodskiy/mvl-db-bot-controller.git",
-    "mvl-importexport-controller": "git+https://github.com/mvoevodskiy/mvl-importexport-controller.git",
-    "mvl-excel-handler": "git+https://github.com/mvoevodskiy/mvl-excel-handler.git"
+    "mvl-importexport-semis": "git+https://github.com/mvoevodskiy/mvl-importexport-semis.git"
   },
   "devDependencies": {
     "mvloader": "git+https://github.com/mvoevodskiy/mvloader.git",
