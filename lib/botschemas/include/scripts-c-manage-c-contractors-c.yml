@@ -18,6 +18,26 @@ find:
     key: query
     thread: manage_contractors
   c:
+    to_contractors:
+      trigger:
+        type: text
+        value: mvlba.btn.contractors
+      goto: c.manage.c.contractors
+    to_find:
+      trigger:
+        type: text
+        value: common.btn.action.find
+      goto: c.manage.c.contractors.c.find
+    to_add:
+      trigger:
+        type: text
+        value: common.btn.action.add
+      goto: c.manage.c.contractors.c.add
+    to_download_sheet:
+      trigger:
+        type: text
+        value: mvlba.btn.download_sheet
+      goto: c.manage.c.contractors
     list:
       action:
         type: method
