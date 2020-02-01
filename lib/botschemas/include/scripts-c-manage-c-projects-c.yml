@@ -205,7 +205,6 @@ add:
       action:
         type: method
         value: mvlbaProjects.add_act
-      goto: c.manage.c.projects
 
 download:
   trigger:
