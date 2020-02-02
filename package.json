@@ -9,13 +9,13 @@
   "author": "mvoevodskiy",
   "license": "ISC",
   "dependencies": {
-    "botcms": "git+https://github.com/mvoevodskiy/BotCMS.git",
-    "mvtools": "git+https://github.com/mvoevodskiy/mvtools.git",
-    "mvl-db-bot-controller": "git+https://github.com/mvoevodskiy/mvl-db-bot-controller.git",
+    "botcms": "0.0.3",
+    "mvtools": "0.0.2",
+    "mvl-db-bot-controller": "0.0.2",
     "mvl-importexport-semis": "git+https://github.com/mvoevodskiy/mvl-importexport-semis.git"
   },
   "devDependencies": {
-    "mvloader": "git+https://github.com/mvoevodskiy/mvloader.git",
+    "mvloader": "0.0.1",
     "sequelize": "^5.21.3"
   }
 }
