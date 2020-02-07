@@ -24,10 +24,32 @@ c:
     trigger:
       type: text
       value: mvlba.btn.write_cash
-    message: mvlbaCash.msg.add.start
+    message: mvlbaCash.msg.add.start_write
     command: true
     goto: ((path)).c.project_find
     c: $FILE ./scripts-c-write_cash-c.yml
+
+  accountable_new:
+    trigger:
+      type: text
+      value: mvlba.btn.give_accountable
+    message: mvlbaCash.msg.add.start_accountable
+    command: true
+    goto: ((path)).c.responsible_find
+    c: $FILE ./scripts-c-accountable-c.yml
+
+  reports:
+    trigger:
+      type: text
+      value: mvlba.btn.reports.start
+    message: common.msg.reports
+    command: true
+    keyboard_name: reports
+    validate:
+      validator:
+      validator-params:
+      success:
+        goto: c.reports.c
 
   manage:
     trigger:

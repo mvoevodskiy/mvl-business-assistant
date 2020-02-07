@@ -1,0 +1,79 @@
+responsible_find:
+  message: mvlbaProjects.msg.add.responsible_find
+  store_pre:
+    clean: true
+    key: direction
+    value: accountable
+    thread: write_cash_add
+  store:
+    key: query
+    thread: manage_workers
+  validate:
+    validator: mvlbaWorkers.find_vld
+    validator-params:
+    failure:
+      goto: ((path))
+      help: c.manage.c.contractors.c.find.c.help_nothing
+    success:
+      goto: ((parent)).responsible_list
+responsible_list:
+  action:
+    type: method
+    value: mvlbaWorkers.list_act
+  store:
+#    clean: true
+    key: responsible
+    thread: write_cash_add
+  validate:
+    validator: mvlbaWorkers.single_select_vld
+    validator-params:
+    failure:
+      goto: ((parent)).responsible_find
+      help: c.manage.c.workers.c.find.c.help_nothing
+    success:
+      goto: ((parent)).bank_out
+bank_out:
+  message: mvlbaCash.msg.add.bank_out
+  action:
+    type: method
+    value: mvlbaBankAccounts.getAll_act
+  store:
+    key: bankOut
+    thread: write_cash_add
+  validate:
+    validator: mvlbaCashTypes.single_select_vld
+    failure:
+      goto: ((parent)).bank_out
+      help: ((parent)).help_nothing
+    success:
+      goto: ((parent)).description
+description:
+  message: mvlbaCash.msg.add.description
+  store:
+    key: description
+    thread: write_cash_add
+  validate:
+    validator:
+    validator-params:
+    success:
+      goto: ((parent)).amount
+amount:
+  message: mvlbaCash.msg.add.amount
+  store:
+    key: amount
+    thread: write_cash_add
+  validate:
+    validator: number
+    failure:
+      goto: ((parent)).amount
+      help: ((parent)).help_nothing
+    success:
+      goto: ((parent)).final
+final:
+  trigger:
+    type: text
+    value: /acc
+  action:
+    type: method
+    value: mvlbaCash.add_act
+  command: true
