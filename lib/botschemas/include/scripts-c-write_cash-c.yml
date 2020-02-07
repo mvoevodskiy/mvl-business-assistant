@@ -198,7 +198,7 @@ direction:
               goto: c.write_cash.c.contractor_find
     default:
       message: common.msg.unknown_try
-      goto: c.write_cash.c.description
+      goto: c.write_cash.c.direction
 contractor_find:
   message: mvlbaCash.msg.add.contractor_find
   store:
