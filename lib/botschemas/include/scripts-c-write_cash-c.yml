@@ -1,6 +1,7 @@
 # c.write_cash.c
 project_find:
   message: mvlbaCash.msg.add.project_find
+  keyboard_name: to_write_cash_main
   store:
     key: query
     thread: write_cash_add
@@ -55,6 +56,7 @@ description:
 
 cost_article_find:
   message: mvlbaCash.msg.add.cost_article_find
+  keyboard_name: to_write_cash_main
   store:
     key: query
     thread: manage_cost_articles
@@ -201,6 +203,7 @@ direction:
       goto: c.write_cash.c.direction
 contractor_find:
   message: mvlbaCash.msg.add.contractor_find
+  keyboard_name: to_write_cash_main
   store:
     key: query
     thread: manage_contractors

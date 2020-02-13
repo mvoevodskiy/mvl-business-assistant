@@ -4,6 +4,7 @@ find:
     type: text
     value: common.btn.action.find
   message: mvlbaCostTypes.msg.find
+  keyboard_name: to_manage_main
   validate:
     validator: mvlbaCostTypes.find_vld
     failure:

@@ -36,3 +36,36 @@ main_director:
 to_main:
   buttons:
     - common.btn.menu.main
+
+to_manage_main:
+  buttons:
+    - common.btn.menu.manage
+    - common.btn.menu.main
+
+to_write_cash_main:
+  buttons:
+    - mvlba.btn.write_cash
+    - common.btn.menu.main
+
+to_accountable_main:
+  buttons:
+    - mvlba.btn.give_accountable
+    - common.btn.menu.main
+
+reports:
+  buttons:
+    - - mvlba.btn.reports.workers
+    - - mvlba.btn.reports.projects
+    - - mvlba.btn.reports.plan_fact
+    - - mvlba.btn.reports.not_filled
+    - - mvlba.btn.reports.accountables
+    - - mvlba.btn.reports.cash.filters
+    - - mvlba.btn.reports.cash.current
+    - - mvlba.btn.reports.cash.download_sheet
+    - - mvlba.btn.reports
+#    - -
+#    - - Пустые/незаполненные
+#    - -
+#    - - Обновить данные из Excel
+#    - - Скачать файл
+#      - Изменить записи

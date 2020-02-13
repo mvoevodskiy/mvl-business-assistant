@@ -1,5 +1,6 @@
 responsible_find:
   message: mvlbaProjects.msg.add.responsible_find
+  keyboard_name: to_accountable_main
   store_pre:
     clean: true
     key: direction

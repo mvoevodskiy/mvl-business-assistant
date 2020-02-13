@@ -4,6 +4,7 @@ find:
     type: text
     value: common.btn.action.find
   message: mvlbaBankAccounts.msg.find
+  keyboard_name: to_manage_main
   validate:
     validator: mvlbaBankAccounts.find_vld
     validator-params:

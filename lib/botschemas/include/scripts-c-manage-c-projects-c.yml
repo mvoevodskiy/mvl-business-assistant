@@ -4,6 +4,7 @@ find:
     type: text
     value: common.btn.action.find
   message: mvlbaProjects.msg.find
+  keyboard_name: to_manage_main
   validate:
     validator: mvlbaProjects.find_vld
     validator-params:
@@ -114,6 +115,7 @@ add:
           goto: c.manage.c.projects.c.add.c.responsible_find
     responsible_find:
       message: mvlbaProjects.msg.add.responsible_find
+      keyboard_name: to_manage_main
       validate:
         validator: mvlbaWorkers.find_vld
         validator-params:
@@ -142,6 +144,7 @@ add:
         thread: manage_projects_add
     contractor_find:
       message: mvlbaProjects.msg.add.contractor_find
+      keyboard_name: to_manage_main
       validate:
         validator: mvlbaContractors.find_vld
         validator-params:
